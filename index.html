@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUEEN LED DISPLAY | Spesialis Penjualan & Instalasi Videotron Indonesia</title>
+    <meta name="description" content="Solusi visual LED Display & Videotron Indoor maupun Outdoor terbaik. Melayani penjualan unit modul LED dan jasa instalasi konstruksi permanen bergaransi resmi.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk untuk nuansa modern futuristik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Konfigurasi Tailwind Custom -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            950: '#04060D',
+                            900: '#080C1A',
+                            800: '#0F1629',
+                            700: '#18223D',
+                        },
+                        neon: {
+                            cyan: '#00F0FF',
+                            purple: '#8B5CF6',
+                            blue: '#3B82F6',
+                            gold: '#F59E0B',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'rgb-glow': 'rgbGlow 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        rgbGlow: {
+                            '0%, 100%': { boxShadow: '0 0 25px rgba(0, 240, 255, 0.35), 0 0 50px rgba(139, 92, 246, 0.2)' },
+                            '50%': { boxShadow: '0 0 35px rgba(139, 92, 246, 0.45), 0 0 60px rgba(0, 240, 255, 0.25)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS untuk efek LED Matrix, Glassmorphism, dan Scrollbar -->
+    <style>
+        body {
+            background-color: #04060D;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        /* Pola Titik Pixel LED Latar Belakang */
+        .led-grid-bg {
+            background-image: radial-gradient(rgba(0, 240, 255, 0.14) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(15, 22, 41, 0.72);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 240, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px -8px rgba(0, 240, 255, 0.18);
+        }
+
+        /* Efek Teks Neon */
+        .text-gradient-neon {
+            background: linear-gradient(135deg, #00F0FF 0%, #3B82F6 50%, #A855F7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #FDE047 0%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Simulasi Layar LED pada Hero */
+        .led-screen-mockup {
+            background: linear-gradient(135deg, #09132B 0%, #150E2E 50%, #071926 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .led-screen-mockup::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.25) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 0, 0, 0.25) 1px, transparent 1px);
+            background-size: 4px 4px;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #04060D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-neon-cyan selection:text-dark-950">
+
+    <!-- =====================================================================
+         KONFIGURASI NOMOR WHATSAPP UTAMA (Ganti nomor di bawah ini)
+         Format: 62812xxxxxxxx (tanpa tanda + atau spasi)
+         ===================================================================== -->
+    <script>
+        const COMPANY_CONFIG = {
+            name: "QUEEN LED DISPLAY",
+            whatsappNumber: "081808554229", // <-- GANTI DENGAN NOMOR WHATSAPP ASLI ANDA
+            displayPhone: "+62 818-8554-4229",
+            email: "sales@queenleddisplay.co.id",
+            address: "Jl. Raya Bantar Gebang - Setu No.51, RT.002/RW.001, Cimuning, Kec. Mustika Jaya, Kota Bks, Jawa Barat 17155 (Melayani Seluruh Indonesia)"
+        };
+    </script>
+
+    <!-- ================= NAVBAR ================= -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-dark-950/80 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo Brand -->
+                <a href="#beranda" class="flex items-center gap-3 group">
+                    <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-neon-cyan via-neon-blue to-neon-purple p-[2px] shadow-[0_0_20px_rgba(0,240,255,0.4)] group-hover:shadow-[0_0_28px_rgba(0,240,255,0.7)] transition-all">
+                        <div class="w-full h-full bg-dark-950 rounded-[10px] flex items-center justify-center">
+                            <i data-lucide="crown" class="w-5 h-5 text-neon-cyan"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-lg sm:text-xl tracking-wider text-white block leading-none">
+                            QUEEN <span class="text-neon-cyan">LED</span>
+                        </span>
+                        <span class="text-[10px] font-semibold tracking-[0.25em] text-slate-400 uppercase block mt-0.5">
+                            DISPLAY & VIDEOTRON
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Navigasi Desktop -->
+                <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
+                    <a href="#beranda" class="hover:text-neon-cyan transition-colors">Beranda</a>
+                    <a href="#layanan" class="hover:text-neon-cyan transition-colors">Layanan</a>
+                    <a href="#katalog" class="hover:text-neon-cyan transition-colors">Katalog Produk</a>
+                    <a href="#kalkulator" class="hover:text-neon-cyan transition-colors flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-neon-cyan animate-ping"></span>
+                        Kalkulator Estimasi
+                    </a>
+                    <a href="#portofolio" class="hover:text-neon-cyan transition-colors">Portofolio</a>
+                    <a href="#kontak" class="hover:text-neon-cyan transition-colors">Kontak</a>
+                </nav>
+
+                <!-- Tombol CTA Desktop & Hamburger Mobile -->
+                <div class="flex items-center gap-3">
+                    <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya ingin konsultasi gratis mengenai pengadaan/instalasi LED Display.')" 
+                        class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-neon-cyan to-neon-blue text-dark-950 hover:opacity-95 shadow-[0_0_20px_rgba(0,240,255,0.35)] transition-all cursor-pointer">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        Konsultasi Gratis
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" aria-label="Buka Menu" class="lg:hidden p-2.5 rounded-xl bg-dark-800 border border-white/10 text-slate-200 hover:text-neon-cyan">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-dark-900/95 backdrop-blur-xl border-b border-white/10 px-4 pt-3 pb-6 space-y-2">
+            <a href="#beranda" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-dark-800 hover:text-neon-cyan font-medium">Beranda</a>
+            <a href="#layanan" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-dark-800 hover:text-neon-cyan font-medium">Layanan Kami</a>
+            <a href="#katalog" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-dark-800 hover:text-neon-cyan font-medium">Katalog Produk LED</a>
+            <a href="#kalkulator" class="mobile-link block px-4 py-3 rounded-xl text-neon-cyan bg-neon-cyan/10 font-semibold">Kalkulator Ukuran Layar</a>
+            <a href="#portofolio" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-dark-800 hover:text-neon-cyan font-medium">Portofolio Proyek</a>
+            <a href="#kontak" class="mobile-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-dark-800 hover:text-neon-cyan font-medium">Kontak & Lokasi</a>
+            <div class="pt-2">
+                <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya ingin konsultasi gratis mengenai LED Display.')" 
+                    class="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-neon-cyan to-neon-blue text-dark-950">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Hubungi via WhatsApp
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= HERO SECTION ================= -->
+    <section id="beranda" class="relative pt-28 pb-20 lg:pt-36 lg:pb-28 led-grid-bg overflow-hidden">
+        <!-- Efek Cahaya Ambient Latar -->
+        <div class="absolute top-20 -left-32 w-96 h-96 bg-neon-cyan/20 rounded-full blur-[130px] pointer-events-none"></div>
+        <div class="absolute bottom-10 -right-32 w-96 h-96 bg-neon-purple/25 rounded-full blur-[130px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Kolom Kiri: Copywriting Persuasif -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-dark-800/90 border border-neon-cyan/30 text-neon-cyan text-xs font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-neon-cyan animate-pulse"></span>
+                        SOLUSI VISUAL DIGITAL TERDEPAN DI INDONESIA
+                    </div>
+
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-[54px] font-bold leading-[1.12] tracking-tight text-white">
+                        Hadirkan Visual Tajam & Spektakuler dengan <span class="text-gradient-neon">LED Display</span> Berkelas
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        <strong class="text-white">QUEEN LED DISPLAY</strong> melayani penjualan unit modul LED berkualitas tinggi (Indoor & Outdoor) serta jasa instalasi konstruksi videotron permanen yang kokoh, presisi, dan bergaransi resmi.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="openWhatsAppGeneral('Halo Tim QUEEN LED DISPLAY, saya tertarik untuk konsultasi pengadaan & instalasi Videotron / LED Display.')" 
+                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl font-bold text-base bg-gradient-to-r from-neon-cyan via-neon-blue to-neon-purple text-white shadow-[0_0_28px_rgba(0,240,255,0.4)] hover:scale-[1.02] transition-all cursor-pointer">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            Konsultasi & Penawaran WA
+                        </button>
+                        <a href="#katalog" 
+                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-semibold text-base bg-dark-800/90 hover:bg-dark-700 text-white border border-white/15 transition-all">
+                            <i data-lucide="layout-grid" class="w-5 h-5 text-neon-cyan"></i>
+                            Lihat Katalog Unit
+                        </a>
+                    </div>
+
+                    <!-- Statistik Singkat -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+                        <div>
+                            <div class="font-display text-2xl sm:text-3xl font-bold text-white">3840<span class="text-neon-cyan text-lg">Hz</span></div>
+                            <div class="text-xs text-slate-400 mt-0.5">High Refresh Rate</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-2xl sm:text-3xl font-bold text-white">IP65<span class="text-neon-gold text-lg">+</span></div>
+                            <div class="text-xs text-slate-400 mt-0.5">Tahan Cuaca Ekstrem</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-2xl sm:text-3xl font-bold text-white">100<span class="text-neon-purple text-lg">%</span></div>
+                            <div class="text-xs text-slate-400 mt-0.5">Garansi & Sparepart</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Visual Ilustrasi / Mockup Layar Videotron Raksasa -->
+                <div class="lg:col-span-6">
+                    <div class="relative mx-auto max-w-xl animate-float">
+                        <!-- Frame Kabinet Videotron -->
+                        <div class="rounded-2xl p-3 bg-gradient-to-b from-slate-700 via-slate-900 to-black border border-white/15 animate-rgb-glow">
+                            <!-- Layar LED Aktif -->
+                            <div class="led-screen-mockup rounded-xl aspect-[16/10] p-6 sm:p-8 flex flex-col justify-between border border-neon-cyan/30">
+                                <!-- Top Bar Simulasi Controller -->
+                                <div class="flex items-center justify-between z-10">
+                                    <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-neon-cyan/40 text-[11px] font-mono text-neon-cyan">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                        SIGNAL: 4K UHD • 60FPS
+                                    </div>
+                                    <span class="text-xs font-mono text-slate-300 bg-black/50 px-2.5 py-1 rounded-md border border-white/10">
+                                        P2.5 / P4 / P8 SERIES
+                                    </span>
+                                </div>
+
+                                <!-- Konten Visual di Tengah Layar LED -->
+                                <div class="my-auto text-center z-10 py-4">
+                                    <div class="inline-block px-3 py-1 mb-2 rounded bg-neon-gold/20 border border-neon-gold/40 text-neon-gold text-xs font-bold tracking-widest uppercase">
+                                        ULTRA-HIGH BRIGHTNESS
+                                    </div>
+                                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold tracking-tight text-white drop-shadow-[0_0_15px_rgba(0,240,255,0.8)]">
+                                        QUEEN LED DISPLAY
+                                    </h2>
+                                    <p class="text-xs sm:text-sm text-cyan-200/90 mt-1.5 font-medium">
+                                        Warna Akurat • Kontras Tinggi • Tanpa Celah Bezel
+                                    </p>
+                                    
+                                    <!-- Visualizer Bar Spektrum Warna RGB -->
+                                    <div class="flex items-end justify-center gap-1.5 h-10 mt-5">
+                                        <span class="w-2 h-4 bg-neon-cyan rounded-full animate-pulse"></span>
+                                        <span class="w-2 h-8 bg-blue-500 rounded-full animate-bounce"></span>
+                                        <span class="w-2 h-10 bg-neon-purple rounded-full animate-pulse"></span>
+                                        <span class="w-2 h-6 bg-pink-500 rounded-full animate-bounce"></span>
+                                        <span class="w-2 h-9 bg-neon-gold rounded-full animate-pulse"></span>
+                                        <span class="w-2 h-7 bg-emerald-400 rounded-full animate-bounce"></span>
+                                        <span class="w-2 h-10 bg-neon-cyan rounded-full animate-pulse"></span>
+                                        <span class="w-2 h-5 bg-neon-purple rounded-full animate-bounce"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Spec Strip -->
+                                <div class="grid grid-cols-3 gap-2 pt-3 border-t border-white/15 text-[11px] font-mono text-slate-300 z-10">
+                                    <div class="bg-black/50 rounded px-2.5 py-1.5 text-center">
+                                        <span class="text-slate-400 block text-[9px]">BRIGHTNESS</span>
+                                        <span class="text-white font-bold">6.500 NITS</span>
+                                    </div>
+                                    <div class="bg-black/50 rounded px-2.5 py-1.5 text-center">
+                                        <span class="text-slate-400 block text-[9px]">VIEW ANGLE</span>
+                                        <span class="text-neon-cyan font-bold">160° WIDE</span>
+                                    </div>
+                                    <div class="bg-black/50 rounded px-2.5 py-1.5 text-center">
+                                        <span class="text-slate-400 block text-[9px]">LIFESPAN</span>
+                                        <span class="text-neon-gold font-bold">100.000 JAM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tiang Penyangga Monopole Dekoratif -->
+                        <div class="mx-auto w-20 h-8 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 border-x border-white/10"></div>
+                        <div class="mx-auto w-36 h-2.5 rounded-full bg-slate-700/80 shadow-lg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= KEUNGGULAN KAMI (4 POIN UTAMA) ================= -->
+    <section class="py-16 bg-dark-900/60 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-neon-cyan text-xs font-bold tracking-widest uppercase">MENGAPA MEMILIH KAMI</span>
+                <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mt-2">Standar Kualitas Tinggi di Setiap Piksel</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Poin 1 -->
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-neon-cyan/15 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan mb-5">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Kualitas Modul High-Refresh Rate</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Menggunakan IC driver terbaru dengan refresh rate hingga 3840Hz. Hasil tampilan mulus tanpa garis kedip (flicker-free) saat direkam kamera.
+                    </p>
+                </div>
+
+                <!-- Poin 2 -->
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-neon-purple/15 border border-neon-purple/30 flex items-center justify-center text-neon-purple mb-5">
+                        <i data-lucide="hard-hat" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Instalasi Konstruksi Kokoh & Aman</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Pengerjaan struktur baja (monopole, wall-mounted, maupun rigging) dihitung presisi sesuai standar keamanan beban angin dan kelistrikan.
+                    </p>
+                </div>
+
+                <!-- Poin 3 -->
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-neon-gold/15 border border-neon-gold/30 flex items-center justify-center text-neon-gold mb-5">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Garansi Resmi & Sparepart Ready</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Jaminan garansi unit dan servis resmi. Ketersediaan modul cadangan, power supply, dan receiving card selalu siap untuk ketenangan bisnis Anda.
+                    </p>
+                </div>
+
+                <!-- Poin 4 -->
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-neon-blue/15 border border-neon-blue/30 flex items-center justify-center text-neon-blue mb-5">
+                        <i data-lucide="headset" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Dukungan Teknis 24/7</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Tim engineer berpengalaman siap membantu mulai dari pelatihan operasional software kontrol (NovaStar/Colorlight) hingga maintenance berkala.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= LAYANAN UTAMA ================= -->
+    <section id="layanan" class="py-20 lg:py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+                <div>
+                    <span class="text-neon-purple text-xs font-bold tracking-widest uppercase">LAYANAN TERPADU</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Solusi Lengkap dari Unit hingga Instalasi</h2>
+                </div>
+                <p class="text-slate-400 text-sm max-w-md">
+                    Kami menangani pengadaan unit untuk kontraktor/vendor maupun proyek terima beres (turnkey) untuk instansi dan perusahaan.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Layanan 1 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon-cyan/10 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-neon-cyan/20"></div>
+                    <div>
+                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-dark-800 border border-neon-cyan/40 text-neon-cyan mb-6">
+                            <i data-lucide="package-check" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold text-white mb-3">1. Penjualan Unit LED (Indoor & Outdoor)</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Menyediakan berbagai tipe modul LED, kabinet die-cast aluminium, kabinet outdoor waterproof, video processor, hingga sistem kontrol lengkap dengan harga kompetitif.
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-cyan shrink-0"></i>
+                                Fine Pitch Indoor (P1.2 - P3.9)
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-cyan shrink-0"></i>
+                                High Brightness Outdoor (P4 - P10)
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-cyan shrink-0"></i>
+                                Standing LED Poster & Transparent LED
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya ingin meminta pricelist pembelian unit LED Display.')" 
+                        class="w-full py-3 px-4 rounded-xl bg-dark-800 hover:bg-neon-cyan hover:text-dark-950 text-neon-cyan font-semibold text-sm border border-neon-cyan/30 transition-all cursor-pointer">
+                        Minta Daftar Harga Unit →
+                    </button>
+                </div>
+
+                <!-- Layanan 2 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden border-neon-purple/40 group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon-purple/15 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-neon-purple/25"></div>
+                    <div>
+                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-dark-800 border border-neon-purple/50 text-neon-purple mb-6">
+                            <i data-lucide="building-2" class="w-7 h-7"></i>
+                        </div>
+                        <div class="inline-block px-2.5 py-0.5 rounded bg-neon-purple/20 text-neon-purple text-[11px] font-bold mb-2">PALING DIMINATI</div>
+                        <h3 class="font-display text-xl font-bold text-white mb-3">2. Jasa Instalasi Permanen Videotron</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Layanan perencanaan desain, fabrikasi rangka besi/baja, pemasangan kabinet, penarikan kabel power & data, hingga kalibrasi layar siap tayang.
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-purple shrink-0"></i>
+                                Videotron Billboard Jalan Raya & Fasad Gedung
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-purple shrink-0"></i>
+                                Backdrop Panggung Gereja, Masjid & Ballroom
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-purple shrink-0"></i>
+                                Ruang Kontrol (Command Center) & Ruang Rapat
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya ingin jadwalkan survei untuk jasa instalasi permanen videotron.')" 
+                        class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-neon-purple to-neon-blue text-white font-semibold text-sm shadow-lg hover:opacity-95 transition-all cursor-pointer">
+                        Jadwalkan Survei Lokasi →
+                    </button>
+                </div>
+
+                <!-- Layanan 3 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon-gold/10 rounded-bl-full -mr-8 -mt-8 transition-all group-hover:bg-neon-gold/20"></div>
+                    <div>
+                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-dark-800 border border-neon-gold/40 text-neon-gold mb-6">
+                            <i data-lucide="wrench" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold text-white mb-3">3. Maintenance, Servis & Upgrade</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Perawatan rutin dan perbaikan cepat untuk videotron yang mengalami mati sebagian, warna belang, kerusakan power supply, atau migrasi sistem kontrol.
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-slate-300 mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-gold shrink-0"></i>
+                                Kontrak Maintenance Berkala Tahunan
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-gold shrink-0"></i>
+                                Penggantian Modul LED & Kalibrasi Warna
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-neon-gold shrink-0"></i>
+                                Perbaikan Receiving Card & Video Processor
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya membutuhkan layanan servis / maintenance untuk unit LED Display kami.')" 
+                        class="w-full py-3 px-4 rounded-xl bg-dark-800 hover:bg-neon-gold hover:text-dark-950 text-neon-gold font-semibold text-sm border border-neon-gold/30 transition-all cursor-pointer">
+                        Konsultasi Teknis Servis →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= KATALOG PRODUK INTERAKTIF ================= -->
+    <section id="katalog" class="py-20 lg:py-24 bg-dark-900/70 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-neon-cyan text-xs font-bold tracking-widest uppercase">KATALOG SPESIFIKASI</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Pilihan Modul & Kabinet LED Display</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-3">
+                    Pilih kategori di bawah untuk melihat spesifikasi teknis lengkap. Klik <strong class="text-white">"Tanya Harga"</strong> untuk langsung terhubung ke WhatsApp dengan detail produk terpilih.
+                </p>
+            </div>
+
+            <!-- Filter Kategori Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 mb-12" id="catalog-filters">
+                <button data-filter="all" class="filter-btn active px-5 py-2.5 rounded-xl text-sm font-semibold bg-neon-cyan text-dark-950 shadow-[0_0_15px_rgba(0,240,255,0.35)] transition-all cursor-pointer">
+                    Semua Produk
+                </button>
+                <button data-filter="indoor" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-dark-800 text-slate-300 hover:text-white border border-white/10 transition-all cursor-pointer">
+                    Indoor Series
+                </button>
+                <button data-filter="outdoor" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-dark-800 text-slate-300 hover:text-white border border-white/10 transition-all cursor-pointer">
+                    Outdoor Series
+                </button>
+                <button data-filter="creative" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-semibold bg-dark-800 text-slate-300 hover:text-white border border-white/10 transition-all cursor-pointer">
+                    Transparan & LED Poster
+                </button>
+            </div>
+
+            <!-- Grid Kartu Produk (Di-render via JavaScript agar dinamis & rapi) -->
+            <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Konten kartu akan diisi otomatis oleh JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= KALKULATOR ESTIMASI UKURAN LAYAR ================= -->
+    <section id="kalkulator" class="py-20 lg:py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-950 via-neon-blue/5 to-dark-950 pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 lg:p-12 border border-neon-cyan/30 shadow-[0_0_50px_rgba(0,240,255,0.08)]">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Form Input Kalkulator -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neon-cyan/15 text-neon-cyan text-xs font-bold uppercase tracking-wider">
+                                <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+                                Simulasi Interaktif
+                            </span>
+                            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mt-3">
+                                Kalkulator Estimasi Ukuran Videotron
+                            </h2>
+                            <p class="text-slate-400 text-sm mt-2">
+                                Masukkan perkiraan lebar dan tinggi area pemasangan Anda. Sistem akan menghitung luas bidang (m²), perkiraan kebutuhan daya, dan rekomendasi Pixel Pitch terbaik.
+                            </p>
+                        </div>
+
+                        <!-- Pilihan Lokasi Pemasangan -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">1. Lokasi Penempatan Layar</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button type="button" id="calc-type-indoor" onclick="setCalcEnvironment('Indoor')" 
+                                    class="calc-env-btn py-3 px-4 rounded-xl font-semibold text-sm border border-neon-cyan bg-neon-cyan/15 text-neon-cyan flex items-center justify-center gap-2 transition-all cursor-pointer">
+                                    <i data-lucide="building" class="w-4 h-4"></i>
+                                    Indoor (Dalam Ruang)
+                                </button>
+                                <button type="button" id="calc-type-outdoor" onclick="setCalcEnvironment('Outdoor')" 
+                                    class="calc-env-btn py-3 px-4 rounded-xl font-semibold text-sm border border-white/10 bg-dark-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer">
+                                    <i data-lucide="sun" class="w-4 h-4"></i>
+                                    Outdoor (Luar Ruang)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Input Lebar & Tinggi -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="calc-width" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                                    2. Lebar Layar (Meter)
+                                </label>
+                                <div class="relative">
+                                    <input type="number" id="calc-width" value="4" min="0.5" max="100" step="0.5" oninput="calculateLED()"
+                                        class="w-full bg-dark-950 border border-white/15 focus:border-neon-cyan rounded-xl px-4 py-3.5 text-white font-display font-bold text-lg outline-none transition-colors">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">Meter</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="calc-height" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                                    3. Tinggi Layar (Meter)
+                                </label>
+                                <div class="relative">
+                                    <input type="number" id="calc-height" value="2" min="0.5" max="100" step="0.5" oninput="calculateLED()"
+                                        class="w-full bg-dark-950 border border-white/15 focus:border-neon-cyan rounded-xl px-4 py-3.5 text-white font-display font-bold text-lg outline-none transition-colors">
+                                    <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400">Meter</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Input Jarak Pandang (Opsional untuk rekomendasi lebih akurat) -->
+                        <div>
+                            <label for="calc-distance" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
+                                4. Perkiraan Jarak Pandang Terdekat Audiens
+                            </label>
+                            <select id="calc-distance" onchange="calculateLED()" 
+                                class="w-full bg-dark-950 border border-white/15 focus:border-neon-cyan rounded-xl px-4 py-3 text-sm text-white outline-none">
+                                <option value="close">Dekat (2 – 4 Meter) — Ruang Rapat / Lobby</option>
+                                <option value="medium" selected>Menengah (4 – 10 Meter) — Aula / Gereja / Masjid / Mall</option>
+                                <option value="far">Jauh (10 – 50+ Meter) — Jalan Raya / Fasad Gedung</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Hasil Simulasi & Visual Preview Rasio -->
+                    <div class="lg:col-span-6 bg-dark-950/90 rounded-2xl p-6 sm:p-8 border border-white/10 space-y-6">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Hasil Kalkulasi Spesifikasi</span>
+                            <span id="res-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-neon-cyan/15 text-neon-cyan">INDOOR SERIES</span>
+                        </div>
+
+                        <!-- Preview Proporsi Layar Visual -->
+                        <div class="bg-dark-900 rounded-xl p-6 flex flex-col items-center justify-center min-h-[160px] border border-dashed border-white/15 relative">
+                            <div id="visual-aspect-box" class="bg-gradient-to-br from-neon-cyan/30 via-neon-blue/30 to-neon-purple/30 border-2 border-neon-cyan rounded-lg flex items-center justify-center transition-all duration-300 shadow-[0_0_20px_rgba(0,240,255,0.25)]" style="width: 180px; height: 90px;">
+                                <span id="visual-dim-text" class="font-mono text-xs font-bold text-white drop-shadow">4m × 2m</span>
+                            </div>
+                            <span class="text-[11px] text-slate-500 mt-3">Simulasi proporsi aspek rasio layar (<span id="res-ratio">2:1</span>)</span>
+                        </div>
+
+                        <!-- Grid Angka Hasil -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-dark-900/90 p-4 rounded-xl border border-white/5">
+                                <span class="text-xs text-slate-400 block">Total Luas Bidang</span>
+                                <span id="res-area" class="font-display text-2xl font-bold text-white mt-1 block">8.00 m²</span>
+                            </div>
+                            <div class="bg-dark-900/90 p-4 rounded-xl border border-white/5">
+                                <span class="text-xs text-slate-400 block">Rekomendasi Pixel Pitch</span>
+                                <span id="res-pitch" class="font-display text-xl font-bold text-neon-cyan mt-1 block">P2.5 / P3.0</span>
+                            </div>
+                            <div class="bg-dark-900/90 p-4 rounded-xl border border-white/5">
+                                <span class="text-xs text-slate-400 block">Estimasi Daya Listrik (Avg)</span>
+                                <span id="res-power" class="font-display text-lg font-bold text-neon-gold mt-1 block">~2.400 Watt</span>
+                            </div>
+                            <div class="bg-dark-900/90 p-4 rounded-xl border border-white/5">
+                                <span class="text-xs text-slate-400 block">Tingkat Kecerahan</span>
+                                <span id="res-brightness" class="font-display text-lg font-bold text-slate-200 mt-1 block">800 - 1.200 Nits</span>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Kirim Hasil Kalkulator ke WhatsApp -->
+                        <button onclick="sendCalculatorToWhatsApp()" 
+                            class="w-full py-4 px-6 rounded-xl font-bold text-sm sm:text-base bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-dark-950 shadow-[0_0_25px_rgba(16,185,129,0.35)] flex items-center justify-center gap-2.5 transition-all cursor-pointer">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                            Minta Penawaran Harga Ukuran Ini via WA
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GALERI PORTOFOLIO PROYEK ================= -->
+    <section id="portofolio" class="py-20 lg:py-24 bg-dark-900/60 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-neon-gold text-xs font-bold tracking-widest uppercase">REKAM JEJAK PROYEK</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">Galeri Instalasi Videotron</h2>
+                </div>
+                <p class="text-slate-400 text-sm max-w-md">
+                    Beberapa contoh aplikasi instalasi LED Display permanen di berbagai sektor komersial, rumah ibadah, hingga fasilitas publik.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Proyek 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="relative h-60 bg-dark-800 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80" 
+                             onerror="this.src='https://placehold.co/800x450/0F1629/00F0FF?text=Videotron+Outdoor+Billboard+P8'"
+                             alt="Videotron Outdoor Billboard Jalan Raya" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/30 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-neon-cyan text-dark-950">
+                            OUTDOOR BILLBOARD
+                        </span>
+                        <div class="absolute bottom-4 left-5 right-5">
+                            <h3 class="font-display text-xl font-bold text-white">Videotron Jalan Protokol & Fasad Komersial</h3>
+                            <p class="text-xs text-cyan-300 mt-1">Spesifikasi: Outdoor P8 DIP/SMD • Ukuran 6m × 3m • 6.500 Nits IP65</p>
+                        </div>
+                    </div>
+                    <div class="p-5 flex items-center justify-between text-xs text-slate-400">
+                        <span>Konstruksi: Tiang Monopole Baja & Front-Service Cabinet</span>
+                        <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya tertarik membuat Videotron Outdoor seperti di portofolio Anda.')" class="text-neon-cyan font-semibold hover:underline cursor-pointer">
+                            Tanya Proyek Serupa →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proyek 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="relative h-60 bg-dark-800 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=900&q=80" 
+                             onerror="this.src='https://placehold.co/800x450/0F1629/A855F7?text=LED+Ballroom+Hotel+P2.5'"
+                             alt="LED Display Ballroom Hotel & Aula" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/30 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-neon-purple text-white">
+                            BALLROOM & AUDITORIUM
+                        </span>
+                        <div class="absolute bottom-4 left-5 right-5">
+                            <h3 class="font-display text-xl font-bold text-white">Main Stage LED Ballroom Hotel & Convention</h3>
+                            <p class="text-xs text-purple-300 mt-1">Spesifikasi: Indoor P2.5 • Ukuran 8m × 4m • Refresh Rate 3840Hz</p>
+                        </div>
+                    </div>
+                    <div class="p-5 flex items-center justify-between text-xs text-slate-400">
+                        <span>Konstruksi: Wall-Mounted Frame Presisi & NovaStar Processor</span>
+                        <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya tertarik instalasi LED Ballroom / Auditorium seperti di portofolio Anda.')" class="text-neon-purple font-semibold hover:underline cursor-pointer">
+                            Tanya Proyek Serupa →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proyek 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="relative h-60 bg-dark-800 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80" 
+                             onerror="this.src='https://placehold.co/800x450/0F1629/F59E0B?text=LED+Rumah+Ibadah+Masjid+Gereja'"
+                             alt="LED Display Masjid dan Gereja" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/30 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-neon-gold text-dark-950">
+                            RUMAH IBADAH
+                        </span>
+                        <div class="absolute bottom-4 left-5 right-5">
+                            <h3 class="font-display text-xl font-bold text-white">LED Display Masjid Agung & Gereja Modern</h3>
+                            <p class="text-xs text-amber-300 mt-1">Spesifikasi: Indoor P2.5 / P3.0 • Ukuran 5m × 3m • Anti-Flicker Kamera</p>
+                        </div>
+                    </div>
+                    <div class="p-5 flex items-center justify-between text-xs text-slate-400">
+                        <span>Konstruksi: Rangka Hollow Galvanis & Integrasi Live Streaming</span>
+                        <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya ingin konsultasi pengadaan LED Display untuk Rumah Ibadah (Masjid/Gereja).')" class="text-neon-gold font-semibold hover:underline cursor-pointer">
+                            Tanya Proyek Serupa →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proyek 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden group">
+                    <div class="relative h-60 bg-dark-800 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" 
+                             onerror="this.src='https://placehold.co/800x450/0F1629/3B82F6?text=Command+Center+%26+Digital+Signage'"
+                             alt="Command Center & Digital Signage Mall" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/30 to-transparent"></div>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-neon-blue text-white">
+                            COMMAND CENTER & MALL
+                        </span>
+                        <div class="absolute bottom-4 left-5 right-5">
+                            <h3 class="font-display text-xl font-bold text-white">Command Center Instansi & Atrium Retail Mall</h3>
+                            <p class="text-xs text-blue-300 mt-1">Spesifikasi: Fine Pitch P1.86 • Seamless Bezel • Operasional 24 Jam</p>
+                        </div>
+                    </div>
+                    <div class="p-5 flex items-center justify-between text-xs text-slate-400">
+                        <span>Konstruksi: Die-Cast Aluminium Ultra-Slim & Redundant Power</span>
+                        <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya tertarik pengadaan LED Fine Pitch untuk Command Center / Ruang Rapat / Mall.')" class="text-neon-blue font-semibold hover:underline cursor-pointer">
+                            Tanya Proyek Serupa →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ALUR PEMESANAN & INSTALASI ================= -->
+    <section class="py-20 lg:py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-neon-cyan text-xs font-bold tracking-widest uppercase">PROSES KERJA TRANSPARAN</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mt-2">4 Langkah Mudah Pemesanan & Instalasi</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Langkah 1 -->
+                <div class="glass-card rounded-2xl p-6 relative">
+                    <span class="font-display text-5xl font-extrabold text-white/5 absolute top-4 right-5">01</span>
+                    <div class="w-10 h-10 rounded-full bg-neon-cyan text-dark-950 font-display font-bold flex items-center justify-center mb-4">1</div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Konsultasi & Survei Lokasi</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Diskusi kebutuhan ukuran, jarak pandang, serta peninjauan lokasi pemasangan untuk pengukuran teknis dan kelistrikan.
+                    </p>
+                </div>
+
+                <!-- Langkah 2 -->
+                <div class="glass-card rounded-2xl p-6 relative">
+                    <span class="font-display text-5xl font-extrabold text-white/5 absolute top-4 right-5">02</span>
+                    <div class="w-10 h-10 rounded-full bg-neon-blue text-white font-display font-bold flex items-center justify-center mb-4">2</div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Desain & Penawaran</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Penyusunan gambar kerja konstruksi, rincian spesifikasi komponen LED, serta penawaran harga (RAB) terbaik yang transparan.
+                    </p>
+                </div>
+
+                <!-- Langkah 3 -->
+                <div class="glass-card rounded-2xl p-6 relative">
+                    <span class="font-display text-5xl font-extrabold text-white/5 absolute top-4 right-5">03</span>
+                    <div class="w-10 h-10 rounded-full bg-neon-purple text-white font-display font-bold flex items-center justify-center mb-4">3</div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Fabrikasi & Instalasi</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Perakitan rangka konstruksi baja, pemasangan kabinet LED, penarikan jaringan kabel power & data oleh teknisi bersertifikat.
+                    </p>
+                </div>
+
+                <!-- Langkah 4 -->
+                <div class="glass-card rounded-2xl p-6 relative">
+                    <span class="font-display text-5xl font-extrabold text-white/5 absolute top-4 right-5">04</span>
+                    <div class="w-10 h-10 rounded-full bg-neon-gold text-dark-950 font-display font-bold flex items-center justify-center mb-4">4</div>
+                    <h3 class="font-display text-lg font-bold text-white mb-2">Testing & Serah Terima</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Kalibrasi warna, uji ketahanan layar, pelatihan operator klien hingga mahir, dan penyerahan sertifikat garansi resmi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CTA BANNER & KONTAK / FOOTER ================= -->
+    <footer id="kontak" class="bg-dark-900 border-t border-white/10 pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Banner CTA Akhir -->
+            <div class="rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-dark-800 via-[#131C3A] to-dark-800 border border-neon-cyan/30 mb-16 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-72 h-72 bg-neon-cyan/15 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="text-center lg:text-left max-w-2xl z-10">
+                    <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+                        Siap Tingkatkan Daya Tarik Visual Bisnis Anda?
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base mt-3">
+                        Konsultasikan kebutuhan LED Display Indoor maupun Outdoor Anda sekarang. Dapatkan penawaran harga spesial dan estimasi pemasangan dari tim ahli kami.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto z-10">
+                    <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya ingin berkonsultasi mengenai kebutuhan LED Display / Videotron untuk proyek kami.')" 
+                        class="px-7 py-4 rounded-xl font-bold text-sm sm:text-base bg-neon-cyan text-dark-950 hover:bg-cyan-300 shadow-[0_0_25px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2 transition-all cursor-pointer">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        Chat WhatsApp Sekarang
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid Informasi Footer -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                <!-- Brand Info -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neon-cyan to-neon-purple p-[2px]">
+                            <div class="w-full h-full bg-dark-950 rounded-[10px] flex items-center justify-center">
+                                <i data-lucide="crown" class="w-5 h-5 text-neon-cyan"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="font-display font-bold text-xl tracking-wider text-white block leading-none">
+                                QUEEN <span class="text-neon-cyan">LED</span>
+                            </span>
+                            <span class="text-[10px] font-semibold tracking-[0.25em] text-slate-400 uppercase block mt-0.5">
+                                DISPLAY & VIDEOTRON
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-md">
+                        Mitra terpercaya penyedia unit LED Display Indoor & Outdoor serta jasa instalasi konstruksi videotron permanen berkualitas tinggi untuk seluruh wilayah Indonesia.
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <span class="px-3 py-1 rounded-md bg-dark-800 border border-white/10 text-xs text-slate-300">Jabodetabek</span>
+                        <span class="px-3 py-1 rounded-md bg-dark-800 border border-white/10 text-xs text-slate-300">Jawa & Bali</span>
+                        <span class="px-3 py-1 rounded-md bg-dark-800 border border-white/10 text-xs text-slate-300">Seluruh Indonesia</span>
+                    </div>
+                </div>
+
+                <!-- Navigasi Cepat -->
+                <div class="lg:col-span-3 space-y-3">
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider">Navigasi Cepat</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#beranda" class="hover:text-neon-cyan transition-colors">Beranda</a></li>
+                        <li><a href="#layanan" class="hover:text-neon-cyan transition-colors">Layanan Penjualan & Instalasi</a></li>
+                        <li><a href="#katalog" class="hover:text-neon-cyan transition-colors">Katalog Produk LED</a></li>
+                        <li><a href="#kalkulator" class="hover:text-neon-cyan transition-colors">Kalkulator Ukuran Layar</a></li>
+                        <li><a href="#portofolio" class="hover:text-neon-cyan transition-colors">Portofolio Proyek</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kontak & Alamat Operasional -->
+                <div class="lg:col-span-4 space-y-3">
+                    <h4 class="font-display font-bold text-white text-sm uppercase tracking-wider">Kontak & Workshop</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-neon-cyan shrink-0 mt-0.5"></i>
+                            <span id="footer-address">Jl. Raya Inspeksi Kalimalang No. 88, Tambun Selatan, Kab. Bekasi & Jakarta Timur</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-neon-cyan shrink-0"></i>
+                            <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya ingin bertanya informasi produk.')" class="hover:text-neon-cyan transition-colors text-left cursor-pointer" id="footer-phone">
+                                +62 812-3456-7890 (WhatsApp / Telp)
+                            </button>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="clock" class="w-5 h-5 text-neon-cyan shrink-0"></i>
+                            <span>Senin – Sabtu: 08.30 – 17.30 WIB</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>&copy; <span id="current-year"></span> QUEEN LED DISPLAY. Hak Cipta Dilindungi Undang-Undang.</p>
+                <p>Solusi Videotron Indoor • Outdoor • Konstruksi Permanen</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button Pojok Kanan Bawah -->
+    <button onclick="openWhatsAppGeneral('Halo QUEEN LED DISPLAY, saya ingin konsultasi mengenai LED Display.')" 
+        aria-label="Chat WhatsApp"
+        class="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-dark-950 font-bold text-sm shadow-[0_8px_30px_rgba(16,185,129,0.5)] hover:scale-105 transition-all cursor-pointer">
+        <i data-lucide="message-circle" class="w-5 h-5 fill-dark-950"></i>
+        <span class="hidden sm:inline">Chat Sales WA</span>
+    </button>
+
+    <!-- ================= JAVASCRIPT INTERAKTIF ================= -->
+    <script>
+        // 1. Data Katalog Produk Lengkap
+        const PRODUCTS = [
+            {
+                id: 'in-p18',
+                name: 'QUEEN Indoor Fine Pitch P1.86',
+                category: 'indoor',
+                categoryLabel: 'Indoor Series',
+                badge: 'ULTRA HD CLOSE VIEW',
+                pitch: 'P1.86 mm',
+                brightness: '800 Nits',
+                refreshRate: '3840 Hz',
+                ipRating: 'IP31 (Indoor)',
+                application: 'Command Center, Ruang Rapat VIP, Studio TV',
+                accentColor: 'cyan'
+            },
+            {
+                id: 'in-p25',
+                name: 'QUEEN Indoor Pro P2.5',
+                category: 'indoor',
+                categoryLabel: 'Indoor Series',
+                badge: 'BEST SELLER INDOOR',
+                pitch: 'P2.5 mm',
+                brightness: '1.000 Nits',
+                refreshRate: '3840 Hz',
+                ipRating: 'IP31 (Indoor)',
+                application: 'Ballroom Hotel, Gereja, Masjid, Aula & Retail',
+                accentColor: 'cyan'
+            },
+            {
+                id: 'in-p39',
+                name: 'QUEEN Indoor Stage & Wall P3.91',
+                category: 'indoor',
+                categoryLabel: 'Indoor Series',
+                badge: 'DIE-CAST ALUMINIUM',
+                pitch: 'P3.91 mm',
+                brightness: '1.200 Nits',
+                refreshRate: '3840 Hz',
+                ipRating: 'IP43 (Indoor)',
+                application: 'Panggung Event, Auditorium, Mall Atrium',
+                accentColor: 'cyan'
+            },
+            {
+                id: 'out-p4',
+                name: 'QUEEN Outdoor HD P4',
+                category: 'outdoor',
+                categoryLabel: 'Outdoor Series',
+                badge: 'HIGH RESOLUTION OUTDOOR',
+                pitch: 'P4.0 mm',
+                brightness: '5.500 Nits',
+                refreshRate: '3840 Hz',
+                ipRating: 'IP65 Waterproof',
+                application: 'Fasad Gedung, Signage Toko, Area Publik Dekat',
+                accentColor: 'purple'
+            },
+            {
+                id: 'out-p5',
+                name: 'QUEEN Outdoor Pro P5',
+                category: 'outdoor',
+                categoryLabel: 'Outdoor Series',
+                badge: 'BEST SELLER OUTDOOR',
+                pitch: 'P5.0 mm',
+                brightness: '6.000 Nits',
+                refreshRate: '3840 Hz',
+                ipRating: 'IP65 Waterproof',
+                application: 'Videotron Billboard, Gerbang Kawasan, Kampus',
+                accentColor: 'purple'
+            },
+            {
+                id: 'out-p8-p10',
+                name: 'QUEEN Outdoor Billboard P8 / P10',
+                category: 'outdoor',
+                categoryLabel: 'Outdoor Series',
+                badge: 'JARAK PANDANG JAUH',
+                pitch: 'P8 / P10 mm',
+                brightness: '6.500 - 7.500 Nits',
+                refreshRate: '3840 Hz',
+                ipRating: 'IP65 / IP67 Heavy Duty',
+                application: 'Billboard Jalan Tol, Jalan Protokol, Stadion',
+                accentColor: 'purple'
+            },
+            {
+                id: 'cr-poster',
+                name: 'QUEEN Smart LED Poster P2.5',
+                category: 'creative',
+                categoryLabel: 'Transparan & Poster',
+                badge: 'PLUG & PLAY WIFI/USB',
+                pitch: 'P2.5 mm',
+                brightness: '1.000 Nits',
+                refreshRate: '3840 Hz',
+                ipRating: 'IP31 (Standing)',
+                application: 'Lobby Hotel, Showroom Mobil, Pameran, Restoran',
+                accentColor: 'gold'
+            },
+            {
+                id: 'cr-trans',
+                name: 'QUEEN Transparent Glass LED P3.9-7.8',
+                category: 'creative',
+                categoryLabel: 'Transparan & Poster',
+                badge: 'TRANSPARANSI 75%',
+                pitch: 'P3.91 - 7.81 mm',
+                brightness: '4.500 Nits',
+                refreshRate: '3840 Hz',
+                ipRating: 'IP43 (Window Glass)',
+                application: 'Dinding Kaca Gedung, Butik Mall, Showroom',
+                accentColor: 'gold'
+            }
+        ];
+
+        // 2. Render Kartu Produk berdasarkan Filter
+        function renderProducts(filter = 'all') {
+            const grid = document.getElementById('product-grid');
+            const filtered = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === filter);
+
+            grid.innerHTML = filtered.map(product => {
+                const badgeStyle = product.accentColor === 'cyan' 
+                    ? 'bg-neon-cyan/15 text-neon-cyan border-neon-cyan/30' 
+                    : product.accentColor === 'purple' 
+                    ? 'bg-neon-purple/15 text-neon-purple border-neon-purple/30'
+                    : 'bg-neon-gold/15 text-neon-gold border-neon-gold/30';
+
+                return `
+                    <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <span class="px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider uppercase border ${badgeStyle}">
+                                    ${product.badge}
+                                </span>
+                                <span class="text-xs font-medium text-slate-400">${product.categoryLabel}</span>
+                            </div>
+
+                            <h3 class="font-display text-xl font-bold text-white mb-4">${product.name}</h3>
+
+                            <!-- Tabel Spesifikasi Teknis -->
+                            <div class="space-y-2.5 bg-dark-950/70 rounded-xl p-4 border border-white/5 text-xs mb-5">
+                                <div class="flex justify-between py-1 border-b border-white/5">
+                                    <span class="text-slate-400">Pixel Pitch</span>
+                                    <span class="font-bold text-white font-mono">${product.pitch}</span>
+                                </div>
+                                <div class="flex justify-between py-1 border-b border-white/5">
+                                    <span class="text-slate-400">Tingkat Kecerahan</span>
+                                    <span class="font-bold text-neon-cyan font-mono">${product.brightness}</span>
+                                </div>
+                                <div class="flex justify-between py-1 border-b border-white/5">
+                                    <span class="text-slate-400">Refresh Rate</span>
+                                    <span class="font-bold text-white font-mono">${product.refreshRate}</span>
+                                </div>
+                                <div class="flex justify-between py-1">
+                                    <span class="text-slate-400">Proteksi (IP Rating)</span>
+                                    <span class="font-bold text-neon-gold font-mono">${product.ipRating}</span>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-400 mb-6">
+                                <strong class="text-slate-300">Ideal untuk:</strong> ${product.application}
+                            </p>
+                        </div>
+
+                        <button onclick="inquireProduct('${product.name}', '${product.pitch}', '${product.categoryLabel}')" 
+                            class="w-full py-3 px-4 rounded-xl font-bold text-sm bg-gradient-to-r from-neon-cyan/90 to-neon-blue/90 hover:from-neon-cyan hover:to-neon-blue text-dark-950 flex items-center justify-center gap-2 transition-all cursor-pointer">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                            Tanya Harga Produk Ini
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            // Re-inisialisasi ikon Lucide untuk elemen baru
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        // Event Listener Tombol Filter Katalog
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-neon-cyan', 'text-dark-950', 'shadow-[0_0_15px_rgba(0,240,255,0.35)]');
+                    b.classList.add('bg-dark-800', 'text-slate-300', 'border', 'border-white/10');
+                });
+                btn.classList.remove('bg-dark-800', 'text-slate-300', 'border', 'border-white/10');
+                btn.classList.add('bg-neon-cyan', 'text-dark-950', 'shadow-[0_0_15px_rgba(0,240,255,0.35)]');
+                
+                renderProducts(btn.getAttribute('data-filter'));
+            });
+        });
+
+        // 3. Logika Kalkulator Estimasi Ukuran LED
+        let currentCalcEnv = 'Indoor';
+
+        function setCalcEnvironment(env) {
+            currentCalcEnv = env;
+            const btnIn = document.getElementById('calc-type-indoor');
+            const btnOut = document.getElementById('calc-type-outdoor');
+
+            if (env === 'Indoor') {
+                btnIn.className = "calc-env-btn py-3 px-4 rounded-xl font-semibold text-sm border border-neon-cyan bg-neon-cyan/15 text-neon-cyan flex items-center justify-center gap-2 transition-all cursor-pointer";
+                btnOut.className = "calc-env-btn py-3 px-4 rounded-xl font-semibold text-sm border border-white/10 bg-dark-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer";
+            } else {
+                btnOut.className = "calc-env-btn py-3 px-4 rounded-xl font-semibold text-sm border border-neon-purple bg-neon-purple/20 text-neon-purple flex items-center justify-center gap-2 transition-all cursor-pointer";
+                btnIn.className = "calc-env-btn py-3 px-4 rounded-xl font-semibold text-sm border border-white/10 bg-dark-800 text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer";
+            }
+            calculateLED();
+        }
+
+        function calculateLED() {
+            const width = Math.max(0.5, parseFloat(document.getElementById('calc-width').value) || 0);
+            const height = Math.max(0.5, parseFloat(document.getElementById('calc-height').value) || 0);
+            const distance = document.getElementById('calc-distance').value;
+
+            const area = (width * height).toFixed(2);
+            
+            // Rekomendasi Pixel Pitch & Brightness berdasarkan tipe dan jarak pandang
+            let recPitch = '';
+            let brightness = '';
+            let avgWattPerSqm = 0;
+
+            if (currentCalcEnv === 'Indoor') {
+                brightness = '800 - 1.200 Nits';
+                avgWattPerSqm = 300; // Rata-rata konsumsi daya indoor per m2
+                if (distance === 'close') recPitch = 'P1.86 / P2.0';
+                else if (distance === 'medium') recPitch = 'P2.5 / P3.0';
+                else recPitch = 'P3.91 / P4.0';
+            } else {
+                brightness = '5.500 - 7.000 Nits';
+                avgWattPerSqm = 450; // Rata-rata konsumsi daya outdoor per m2
+                if (distance === 'close') recPitch = 'P4.0 Outdoor';
+                else if (distance === 'medium') recPitch = 'P5.0 / P6.0 Outdoor';
+                else recPitch = 'P8.0 / P10.0 Outdoor';
+            }
+
+            const estPower = Math.round(area * avgWattPerSqm).toLocaleString('id-ID');
+
+            // Update Teks Hasil
+            document.getElementById('res-badge').textContent = `${currentCalcEnv.toUpperCase()} SERIES`;
+            document.getElementById('res-area').textContent = `${area} m²`;
+            document.getElementById('res-pitch').textContent = recPitch;
+            document.getElementById('res-power').textContent = `~${estPower} Watt`;
+            document.getElementById('res-brightness').textContent = brightness;
+
+            // Update Visual Aspek Rasio Box
+            const maxBoxW = 220;
+            const maxBoxH = 110;
+            const ratio = width / height;
+            let boxW = maxBoxW;
+            let boxH = maxBoxW / ratio;
+
+            if (boxH > maxBoxH) {
+                boxH = maxBoxH;
+                boxW = maxBoxH * ratio;
+            }
+            boxW = Math.max(50, Math.min(maxBoxW, boxW));
+            boxH = Math.max(35, Math.min(maxBoxH, boxH));
+
+            const visualBox = document.getElementById('visual-aspect-box');
+            visualBox.style.width = `${boxW}px`;
+            visualBox.style.height = `${boxH}px`;
+            document.getElementById('visual-dim-text').textContent = `${width}m × ${height}m`;
+            document.getElementById('res-ratio').textContent = `${ratio.toFixed(2)} : 1`;
+        }
+
+        // 4. Fungsi Integrasi WhatsApp Dinamis
+        function openWhatsAppGeneral(message) {
+            const url = `https://wa.me/${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        function inquireProduct(productName, pitch, category) {
+            const msg = `Halo *${COMPANY_CONFIG.name}*,\n\nSaya tertarik dan ingin menanyakan informasi harga serta ketersediaan untuk produk:\n• *Produk:* ${productName}\n• *Kategori:* ${category}\n• *Pixel Pitch:* ${pitch}\n\nMohon info penawarannya (unit saja / berikut jasa instalasi). Terima kasih.`;
+            openWhatsAppGeneral(msg);
+        }
+
+        function sendCalculatorToWhatsApp() {
+            const width = document.getElementById('calc-width').value || 4;
+            const height = document.getElementById('calc-height').value || 2;
+            const area = document.getElementById('res-area').textContent;
+            const pitch = document.getElementById('res-pitch').textContent;
+
+            const msg = `Halo *${COMPANY_CONFIG.name}*,\n\nSaya baru saja menggunakan *Kalkulator Estimasi* di website Anda dan ingin meminta penawaran harga dengan spesifikasi berikut:\n• *Tipe Layar:* ${currentCalcEnv}\n• *Ukuran:* Lebar ${width}m × Tinggi ${height}m\n• *Total Luas:* ${area}\n• *Rekomendasi Pitch:* ${pitch}\n\nMohon estimasi biaya pengadaan unit beserta jasa instalasi permanennya. Terima kasih.`;
+            openWhatsAppGeneral(msg);
+        }
+
+        // 5. Menu Mobile Toggle & Inisialisasi Saat Halaman Dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render katalog awal
+            renderProducts('all');
+            // Hitung kalkulator awal
+            calculateLED();
+            // Set tahun footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            // Sync nomor telepon & alamat dari config
+            document.getElementById('footer-phone').textContent = `${COMPANY_CONFIG.displayPhone} (WhatsApp / Telp)`;
+            document.getElementById('footer-address').textContent = COMPANY_CONFIG.address;
+
+            // Mobile Menu Handler
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Tutup menu mobile setelah klik link
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Inisialisasi ikon Lucide
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
